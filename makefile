@@ -53,16 +53,20 @@ TESTS= -DLUA_USER_H='"ltests.h"' -O0
 
 
 # enable Linux goodies
-MYCFLAGS= $(LOCAL) -std=c99 -DLUA_USE_LINUX -DLUA_USE_READLINE
-MYLDFLAGS= $(LOCAL) -Wl,-E
-MYLIBS= -ldl -lreadline
+MYCFLAGS= $(LOCAL) -mcpu=cortex-a9 -mfpu=neon-fp16 -mfloat-abi=softfp -fsingle-precision-constant -Wdouble-promotion
+MYLDFLAGS=-lc -lm -lgcc -Wl,-E
+# $(LOCAL) -Wl,-E -mfloat-abi=softfp
+MYLIBS=
 
 
-CC= gcc
-CFLAGS= -Wall -O2 $(MYCFLAGS) -fno-stack-protector -fno-common -march=native
-AR= ar rc
-RANLIB= ranlib
+CC= arm-none-eabi-g++ --specs=nosys.specs
+CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -ffunction-sections -fdata-sections -fdiagnostics-color -D_POSIX_THREADS -D_UNIX98_THREAD_MUTEX_ATTRIBUTES -Os $(SYSCFLAGS) $(MYCFLAGS)
+AR= arm-none-eabi-ar rcu
+RANLIB= arm-none-eabi-ranlib
 RM= rm -f
+MKDIR= mkdir -p
+
+BUILD_H= lauxlib.h lua.h lua.hpp luaconf.h lualib.h
 
 
 
@@ -89,8 +93,25 @@ ALL_T= $(CORE_T) $(LUA_T) $(LUAC_T)
 ALL_O= $(CORE_O) $(LUA_O) $(LUAC_O) $(AUX_O) $(LIB_O)
 ALL_A= $(CORE_T)
 
+INSTALL= install -p
+INSTALL_EXEC= $(INSTALL) -m 0755
+INSTALL_DATA= $(INSTALL) -m 0644
+
+INSTALL_TOP= build
+
+INSTALL_INCLUDE= $(INSTALL_TOP)/include/lua
+INSTALL_FIRMWARE= $(INSTALL_TOP)/firmware
+TO_INCLUDE= lua.h luaconf.h lualib.h lauxlib.h lua.hpp
+TO_FIRMWARE=liblua.a
+
 all:	$(ALL_T)
 	touch all
+
+	$(MKDIR) $(INSTALL_INCLUDE) $(INSTALL_FIRMWARE)
+	$(INSTALL_DATA) $(TO_INCLUDE) $(INSTALL_INCLUDE)
+	$(INSTALL_DATA) $(TO_FIRMWARE) $(INSTALL_FIRMWARE)
+	
+	
 
 o:	$(ALL_O)
 
@@ -107,8 +128,10 @@ $(LUAC_T): $(LUAC_O) $(CORE_T)
 	$(CC) -o $@ $(MYLDFLAGS) $(LUAC_O) $(CORE_T) $(LIBS) $(MYLIBS)
 
 clean:
-	rcsclean -u
+	#rcsclean -u
 	$(RM) $(ALL_T) $(ALL_O)
+	cd $(INSTALL_INCLUDE) && $(RM) $(TO_INCLUDE)
+	cd $(INSTALL_FIRMWARE) && $(RM) $(TO_FIRMWARE)
 
 depend:
 	@$(CC) $(CFLAGS) -MM *.c

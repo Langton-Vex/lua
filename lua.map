@@ -1,0 +1,2234 @@
+Archive member included to satisfy reference by file (symbol)
+
+liblua.a(lapi.o)              lua.o (lua_gettop)
+liblua.a(ldebug.o)            lua.o (lua_sethook)
+liblua.a(ldo.o)               liblua.a(ldebug.o) (luaD_throw)
+liblua.a(ldump.o)             liblua.a(lapi.o) (luaU_dump)
+liblua.a(lfunc.o)             liblua.a(lapi.o) (luaF_newCclosure)
+liblua.a(lgc.o)               liblua.a(lapi.o) (luaC_barrier_)
+liblua.a(lmem.o)              liblua.a(ldo.o) (luaM_free_)
+liblua.a(lobject.o)           liblua.a(lapi.o) (luaO_arith)
+liblua.a(lopcodes.o)          liblua.a(ldebug.o) (luaP_opmodes)
+liblua.a(lparser.o)           liblua.a(ldo.o) (luaY_parser)
+liblua.a(lstate.o)            liblua.a(lapi.o) (luaE_setdebt)
+liblua.a(lstring.o)           liblua.a(lstate.o) (luaS_hash)
+liblua.a(ltable.o)            liblua.a(lgc.o) (luaH_realasize)
+liblua.a(ltm.o)               liblua.a(lstate.o) (luaT_init)
+liblua.a(lundump.o)           liblua.a(ldo.o) (luaU_undump)
+liblua.a(lvm.o)               liblua.a(lapi.o) (luaV_tonumber_)
+liblua.a(lzio.o)              liblua.a(ldo.o) (luaZ_fill)
+liblua.a(lauxlib.o)           lua.o (luaL_error)
+liblua.a(linit.o)             lua.o (luaL_openlibs)
+liblua.a(lcode.o)             liblua.a(lparser.o) (luaK_semerror)
+liblua.a(lctype.o)            liblua.a(lobject.o) (luai_ctype_)
+liblua.a(llex.o)              liblua.a(lstate.o) (luaX_init)
+liblua.a(lbaselib.o)          liblua.a(linit.o) (luaopen_base)
+liblua.a(ldblib.o)            liblua.a(linit.o) (luaopen_debug)
+liblua.a(liolib.o)            liblua.a(linit.o) (luaopen_io)
+liblua.a(lmathlib.o)          liblua.a(linit.o) (luaopen_math)
+liblua.a(loslib.o)            liblua.a(linit.o) (luaopen_os)
+liblua.a(ltablib.o)           liblua.a(linit.o) (luaopen_table)
+liblua.a(lstrlib.o)           liblua.a(linit.o) (luaopen_string)
+liblua.a(lutf8lib.o)          liblua.a(linit.o) (luaopen_utf8)
+liblua.a(loadlib.o)           liblua.a(linit.o) (luaopen_package)
+liblua.a(lcorolib.o)          liblua.a(linit.o) (luaopen_coroutine)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+COLD_MEMORY      0x03800000         0x04800000
+HEAP             0x04a00000         0x02e00000
+HOT_MEMORY       0x07800000         0x00800000
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00002000                _STACK_SIZE = DEFINED (_STACK_SIZE)?_STACK_SIZE:0x2000
+                0x00000400                _ABORT_STACK_SIZE = DEFINED (_ABORT_STACK_SIZE)?_ABORT_STACK_SIZE:0x400
+                0x00000800                _SUPERVISOR_STACK_SIZE = DEFINED (_SUPERVISOR_STACK_SIZE)?_SUPERVISOR_STACK_SIZE:0x800
+                0x00000400                _IRQ_STACK_SIZE = DEFINED (_IRQ_STACK_SIZE)?_IRQ_STACK_SIZE:0x400
+                0x00000400                _FIQ_STACK_SIZE = DEFINED (_FIQ_STACK_SIZE)?_FIQ_STACK_SIZE:0x400
+                0x00000400                _UNDEF_STACK_SIZE = DEFINED (_UNDEF_STACK_SIZE)?_UNDEF_STACK_SIZE:0x400
+                0x02e00000                _HEAP_SIZE = DEFINED (_HEAP_SIZE)?_HEAP_SIZE:0x2e00000
+
+.hot_init
+ *(.hot_magic)
+ *(.hot_init)
+
+.text           0x03800000    0x25204
+ *(.vectors)
+ *(.boot_data)
+                0x00000020                . = 0x20
+ *fill*         0x03800000       0x20 
+ *(.boot)
+                0x03800040                . = ALIGN (0x40)
+ *fill*         0x03800020       0x20 
+ *(.freertos_vectors)
+ *(.text)
+ .text          0x03800040      0xda0 lua.o
+ .text          0x03800de0     0x20b4 liblua.a(lapi.o)
+                0x03801020                lua_checkstack
+                0x0380109c                lua_xmove
+                0x038010f8                lua_atpanic
+                0x03801108                lua_version
+                0x03801114                lua_absindex
+                0x03801140                lua_gettop
+                0x0380115c                lua_settop
+                0x038011a8                lua_rotate
+                0x038012bc                lua_copy
+                0x0380133c                lua_pushvalue
+                0x03801368                lua_type
+                0x0380139c                lua_typename
+                0x038013b0                lua_iscfunction
+                0x038013d0                lua_isinteger
+                0x038013ec                lua_isnumber
+                0x03801418                lua_isstring
+                0x0380143c                lua_isuserdata
+                0x03801460                lua_rawequal
+                0x038014d4                lua_arith
+                0x03801530                lua_compare
+                0x038015f0                lua_stringtonumber
+                0x03801618                lua_tonumberx
+                0x03801670                lua_tointegerx
+                0x038016cc                lua_toboolean
+                0x03801708                lua_tolstring
+                0x038017ac                lua_rawlen
+                0x03801884                lua_tocfunction
+                0x038018b4                lua_touserdata
+                0x038018fc                lua_tothread
+                0x03801918                lua_topointer
+                0x0380198c                lua_pushnil
+                0x038019a4                lua_pushnumber
+                0x038019c0                lua_pushinteger
+                0x038019dc                lua_pushlstring
+                0x03801a44                lua_pushstring
+                0x03801aa8                lua_pushvfstring
+                0x03801ad8                lua_pushfstring
+                0x03801b2c                lua_pushcclosure
+                0x03801bd0                lua_pushboolean
+                0x03801bf4                lua_pushlightuserdata
+                0x03801c10                lua_pushthread
+                0x03801c40                lua_getglobal
+                0x03801c70                lua_gettable
+                0x03801d00                lua_getfield
+                0x03801d24                lua_geti
+                0x03801dec                lua_rawget
+                0x03801e38                lua_rawgeti
+                0x03801e7c                lua_rawgetp
+                0x03801ed4                lua_createtable
+                0x03801f40                lua_getmetatable
+                0x03801fb0                lua_getiuservalue
+                0x03802014                lua_setglobal
+                0x03802044                lua_settable
+                0x03802104                lua_setfield
+                0x03802128                lua_seti
+                0x03802224                lua_rawset
+                0x038022ac                lua_rawseti
+                0x03802324                lua_rawsetp
+                0x038023c4                lua_setmetatable
+                0x038024c0                lua_setiuservalue
+                0x03802550                lua_callk
+                0x038025d0                lua_pcallk
+                0x038026d8                lua_load
+                0x038027a0                lua_dump
+                0x038027e8                lua_status
+                0x038027f0                lua_gc
+                0x03802a84                lua_error
+                0x03802a8c                lua_next
+                0x03802ac4                lua_toclose
+                0x03802b04                lua_concat
+                0x03802b74                lua_len
+                0x03802ba0                lua_getallocf
+                0x03802bbc                lua_setallocf
+                0x03802bc8                lua_setwarnf
+                0x03802bd8                lua_warning
+                0x03802bdc                lua_newuserdatauv
+                0x03802c38                lua_getupvalue
+                0x03802cf8                lua_setupvalue
+                0x03802de4                lua_upvalueid
+                0x03802e30                lua_upvaluejoin
+ .text          0x03802e94     0x1474 liblua.a(ldebug.o)
+                0x03803420                luaG_getfuncline
+                0x03803514                lua_sethook
+                0x03803580                lua_gethook
+                0x03803588                lua_gethookmask
+                0x03803590                lua_gethookcount
+                0x03803598                lua_getstack
+                0x038035e0                luaG_findlocal
+                0x038036e4                lua_getlocal
+                0x0380376c                lua_setlocal
+                0x038037bc                lua_getinfo
+                0x03803e78                luaG_addinfo
+                0x03803edc                luaG_errormsg
+                0x03803f40                luaG_runerror
+                0x03803fc4                luaG_typeerror
+                0x03804008                luaG_concaterror
+                0x0380402c                luaG_opinterror
+                0x03804048                luaG_forerror
+                0x03804070                luaG_tointerror
+                0x038040d0                luaG_ordererror
+                0x03804134                luaG_traceexec
+ .text          0x03804308     0x12bc liblua.a(ldo.o)
+                0x03804348                luaD_seterrorobj
+                0x038043d8                luaD_throw
+                0x038045b4                luaD_rawrunprotected
+                0x03804644                luaD_reallocstack
+                0x03804760                luaD_growstack
+                0x03804818                luaD_shrinkstack
+                0x038048b8                luaD_inctop
+                0x038048f0                luaD_hook
+                0x038049e0                luaD_hookcall
+                0x03804a4c                luaD_tryfuncTM
+                0x03804acc                luaD_poscall
+                0x03804d98                luaD_pretailcall
+                0x03804e84                luaD_call
+                0x03805154                luaD_callnoyield
+                0x038051ac                lua_resume
+                0x038053d4                lua_isyieldable
+                0x038053ec                lua_yieldk
+                0x0380546c                luaD_pcall
+                0x038054e4                luaD_protectedparser
+ .text          0x038055c4      0x790 liblua.a(ldump.o)
+                0x03805bac                luaU_dump
+ .text          0x03805d54      0x62c liblua.a(lfunc.o)
+                0x03805e34                luaF_newCclosure
+                0x03805e54                luaF_newLclosure
+                0x03805ea0                luaF_initupvals
+                0x03805f24                luaF_findupval
+                0x03805fa8                luaF_newtbcupval
+                0x0380601c                luaF_unlinkupval
+                0x03806038                luaF_close
+                0x03806208                luaF_newproto
+                0x0380626c                luaF_freeproto
+                0x03806314                luaF_getlocalname
+ .text          0x03806380     0x27bc liblua.a(lgc.o)
+                0x038082a8                luaC_barrier_
+                0x03808308                luaC_barrierback_
+                0x03808448                luaC_fix
+                0x03808474                luaC_newobj
+                0x038084ac                luaC_checkfinalizer
+                0x038085c8                luaC_changemode
+                0x03808604                luaC_freeallobjects
+                0x038086cc                luaC_runtilstate
+                0x03808708                luaC_step
+                0x03808a58                luaC_fullgc
+ .text          0x03808b3c      0x2b4 liblua.a(lmem.o)
+                0x03808b8c                luaM_shrinkvector_
+                0x03808c04                luaM_toobig
+                0x03808c14                luaM_free_
+                0x03808c40                luaM_realloc_
+                0x03808cc0                luaM_growaux_
+                0x03808d48                luaM_saferealloc_
+                0x03808d7c                luaM_malloc_
+ .text          0x03808df0     0x1038 liblua.a(lobject.o)
+                0x03809294                luaO_int2fb
+                0x0380930c                luaO_fb2int
+                0x03809328                luaO_ceillog2
+                0x0380935c                luaO_rawarith
+                0x0380952c                luaO_arith
+                0x03809588                luaO_hexavalue
+                0x038095ac                luaO_str2num
+                0x0380980c                luaO_utf8esc
+                0x03809828                luaO_tostring
+                0x03809904                luaO_pushfstring
+                0x03809934                luaO_pushvfstring
+                0x03809cac                luaO_chunkid
+ .text          0x03809e28        0x0 liblua.a(lopcodes.o)
+ .text          0x03809e28     0x32cc liblua.a(lparser.o)
+                0x0380cee4                luaY_parser
+ .text          0x0380d0f4      0x768 liblua.a(lstate.o)
+                0x0380d228                luaE_setdebt
+                0x0380d24c                luaE_freeCI
+                0x0380d314                luaE_enterCcall
+                0x0380d334                luaE_extendCI
+                0x0380d42c                lua_newstate
+                0x0380d600                luaE_shrinkCI
+                0x0380d688                lua_newthread
+                0x0380d770                luaE_freethread
+                0x0380d7b8                lua_resetthread
+                0x0380d838                lua_close
+                0x0380d844                luaE_warning
+ .text          0x0380d85c      0x680 liblua.a(lstring.o)
+                0x0380d8d4                luaS_eqlngstr
+                0x0380d918                luaS_hash
+                0x0380d964                luaS_hashlongstr
+                0x0380d9dc                luaS_resize
+                0x0380dc10                luaS_clearcache
+                0x0380dc50                luaS_init
+                0x0380dcc8                luaS_createlngstrobj
+                0x0380dd00                luaS_remove
+                0x0380dd58                luaS_newlstr
+                0x0380dda0                luaS_new
+                0x0380de40                luaS_newudata
+ .text          0x0380dedc     0x1218 liblua.a(ltable.o)
+                0x0380e218                luaH_realasize
+                0x0380e250                luaH_next
+                0x0380e3d4                luaH_new
+                0x0380e414                luaH_free
+                0x0380e46c                luaH_getint
+                0x0380e534                luaH_getshortstr
+                0x0380e594                luaH_getstr
+                0x0380e624                luaH_get
+                0x0380e780                luaH_setint
+                0x0380e7e8                luaH_resize
+                0x0380eab8                luaH_resizearray
+                0x0380ead0                luaH_newkey
+                0x0380ee74                luaH_set
+                0x0380eeb0                luaH_getn
+ .text          0x0380f0f4      0x704 liblua.a(ltm.o)
+                0x0380f0f4                luaT_init
+                0x0380f154                luaT_gettm
+                0x0380f188                luaT_gettmbyobj
+                0x0380f1e4                luaT_objtypename
+                0x0380f280                luaT_callTM
+                0x0380f2fc                luaT_callTMres
+                0x0380f414                luaT_trybinTM
+                0x0380f4ec                luaT_trybinassocTM
+                0x0380f524                luaT_trybiniTM
+                0x0380f554                luaT_callorderTM
+                0x0380f5c4                luaT_callorderiTM
+                0x0380f620                luaT_adjustvarargs
+                0x0380f710                luaT_getvarargs
+ .text          0x0380f7f8      0x938 liblua.a(lundump.o)
+                0x0380ff48                luaU_undump
+ .text          0x03810130     0x4998 liblua.a(lvm.o)
+                0x038102a0                luaV_tonumber_
+                0x03810338                luaV_flttointeger
+                0x03810640                luaV_tointegerns
+                0x03810678                luaV_tointeger
+                0x03810718                luaV_finishget
+                0x0381084c                luaV_finishset
+                0x03810a2c                luaV_lessthan
+                0x03810a7c                luaV_lessequal
+                0x03810acc                luaV_equalobj
+                0x03810da8                luaV_concat
+                0x03810ffc                luaV_objlen
+                0x03811100                luaV_idiv
+                0x03811154                luaV_mod
+                0x038111a4                luaV_modf
+                0x0381120c                luaV_shiftl
+                0x03811240                luaV_finishOp
+                0x03811404                luaV_execute
+ .text          0x03814ac8      0x10c liblua.a(lzio.o)
+                0x03814ac8                luaZ_fill
+                0x03814b20                luaZ_init
+                0x03814b38                luaZ_read
+ .text          0x03814bd4     0x1e38 liblua.a(lauxlib.o)
+                0x03815078                luaL_where
+                0x038150e8                luaL_error
+                0x0381513c                luaL_argerror
+                0x038152dc                luaL_fileresult
+                0x0381536c                luaL_execresult
+                0x038153c8                luaL_newmetatable
+                0x03815458                luaL_setmetatable
+                0x03815480                luaL_testudata
+                0x038154fc                luaL_checkstack
+                0x03815548                luaL_traceback
+                0x038157f4                luaL_checkany
+                0x03815824                luaL_pushresult
+                0x03815870                luaL_pushresultsize
+                0x03815880                luaL_buffinit
+                0x038158a0                luaL_ref
+                0x03815964                luaL_unref
+                0x038159bc                luaL_loadfilex
+                0x03815c88                luaL_loadbufferx
+                0x03815cb8                luaL_loadstring
+                0x03815d00                luaL_getmetafield
+                0x03815d78                luaL_typeerror
+                0x03815e14                luaL_checkudata
+                0x03815e50                luaL_checktype
+                0x03815e8c                luaL_checklstring
+                0x03815ed0                luaL_optlstring
+                0x03815f24                luaL_checkoption
+                0x03815fb8                luaL_checknumber
+                0x03816008                luaL_optnumber
+                0x0381603c                luaL_checkinteger
+                0x038160cc                luaL_optinteger
+                0x03816100                luaL_callmeta
+                0x03816160                luaL_len
+                0x038161b8                luaL_tolstring
+                0x038163c0                luaL_setfuncs
+                0x03816580                luaL_prepbuffsize
+                0x038165fc                luaL_addlstring
+                0x03816608                luaL_addstring
+                0x03816634                luaL_addvalue
+                0x038166bc                luaL_buffinitsize
+                0x038166fc                luaL_getsubtable
+                0x03816770                luaL_requiref
+                0x0381686c                luaL_gsub
+                0x03816914                luaL_newstate
+                0x03816984                luaL_checkversion_
+ .text          0x03816a0c       0x4c liblua.a(linit.o)
+                0x03816a0c                luaL_openlibs
+ .text          0x03816a58     0x2680 liblua.a(lcode.o)
+                0x03817520                luaK_semerror
+                0x03817530                luaK_nil
+                0x038175f4                luaK_concat
+                0x03817600                luaK_jump
+                0x0381760c                luaK_ret
+                0x03817638                luaK_getlabel
+                0x03817648                luaK_patchlist
+                0x03817664                luaK_patchtohere
+                0x0381768c                luaK_codeABCk
+                0x038176b4                luaK_codeABx
+                0x038176c0                luaK_codeAsBx
+                0x038176d4                luaK_checkstack
+                0x03817710                luaK_reserveregs
+                0x03817750                luaK_stringK
+                0x03817780                luaK_int
+                0x038177f8                luaK_setreturns
+                0x03817860                luaK_setoneret
+                0x038178c0                luaK_dischargevars
+                0x03817de4                luaK_exp2nextreg
+                0x03817e34                luaK_exp2anyreg
+                0x03818208                luaK_exp2anyregup
+                0x03818224                luaK_exp2val
+                0x03818238                luaK_exp2RK
+                0x038182b8                luaK_storevar
+                0x038183dc                luaK_self
+                0x03818470                luaK_goiftrue
+                0x03818538                luaK_goiffalse
+                0x038185c8                luaK_isKint
+                0x038185ec                luaK_indexed
+                0x03818724                luaK_prefix
+                0x038188e4                luaK_infix
+                0x038189ec                luaK_posfix
+                0x03818edc                luaK_fixline
+                0x03818ef8                luaK_setlist
+                0x03818f8c                luaK_finish
+ .text          0x038190d8        0x0 liblua.a(lctype.o)
+ .text          0x038190d8     0x18cc liblua.a(llex.o)
+                0x03819120                luaX_init
+                0x03819188                luaX_token2str
+                0x0381972c                luaX_syntaxerror
+                0x03819738                luaX_newstring
+                0x0381a8c8                luaX_setinput
+                0x0381a944                luaX_next
+                0x0381a98c                luaX_lookahead
+ .text          0x0381a9a4     0x1054 liblua.a(lbaselib.o)
+                0x0381b980                luaopen_base
+ .text          0x0381b9f8      0xfd8 liblua.a(ldblib.o)
+                0x0381c98c                luaopen_debug
+ .text          0x0381c9d0     0x13fc liblua.a(liolib.o)
+                0x0381dcd4                luaopen_io
+ .text          0x0381ddcc      0xcb0 liblua.a(lmathlib.o)
+                0x0381e938                luaopen_math
+ .text          0x0381ea7c      0x92c liblua.a(loslib.o)
+                0x0381f364                luaopen_os
+ .text          0x0381f3a8      0xbec liblua.a(ltablib.o)
+                0x0381ff50                luaopen_table
+ .text          0x0381ff94     0x36c4 liblua.a(lstrlib.o)
+                0x03823590                luaopen_string
+ .text          0x03823658      0x954 liblua.a(lutf8lib.o)
+                0x03823f40                luaopen_utf8
+ .text          0x03823fac      0xccc liblua.a(loadlib.o)
+                0x03824a50                luaopen_package
+ .text          0x03824c78      0x49c liblua.a(lcorolib.o)
+                0x038250d0                luaopen_coroutine
+ *(.text.*)
+ .text.startup  0x03825114       0xc4 lua.o
+                0x03825114                main
+ .text.unlikely
+                0x038251d8       0x2c liblua.a(lundump.o)
+ *(.gnu.linkonce.t.*)
+ *(.plt)
+ *(.gnu_warning)
+ *(.gcc_execpt_table)
+ *(.glue_7)
+ .glue_7        0x03825204        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x03825204        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x03825204        0x0 linker stubs
+ *(.ARM.extab)
+ *(.gnu.linkonce.armextab.*)
+
+.v4_bx          0x03825204        0x0
+ .v4_bx         0x03825204        0x0 linker stubs
+
+.iplt           0x03825204        0x0
+ .iplt          0x03825204        0x0 lua.o
+
+.init
+ *(.init)
+
+.fini
+ *(.fini)
+
+.rodata         0x03825204     0x334c
+                0x03825204                __rodata_start = .
+ *(.rodata)
+ .rodata        0x03825204       0x81 liblua.a(lapi.o)
+                0x03825204                lua_ident
+ *fill*         0x03825285        0x3 
+ .rodata        0x03825288        0x7 liblua.a(lgc.o)
+ *fill*         0x0382528f        0x1 
+ .rodata        0x03825290      0x100 liblua.a(lobject.o)
+ .rodata        0x03825390       0x54 liblua.a(lopcodes.o)
+                0x03825390                luaP_opmodes
+ .rodata        0x038253e4       0x32 liblua.a(lparser.o)
+ *fill*         0x03825416        0x2 
+ .rodata        0x03825418       0x18 liblua.a(ltable.o)
+ .rodata        0x03825430       0x9d liblua.a(ltm.o)
+                0x03825494                luaT_typenames_
+ *fill*         0x038254cd        0x3 
+ .rodata        0x038254d0      0x150 liblua.a(lvm.o)
+ .rodata        0x03825620       0x18 liblua.a(lauxlib.o)
+ .rodata        0x03825638       0x58 liblua.a(linit.o)
+ .rodata        0x03825690       0x10 liblua.a(lcode.o)
+ .rodata        0x038256a0      0x101 liblua.a(lctype.o)
+                0x038256a0                luai_ctype_
+ *fill*         0x038257a1        0x3 
+ .rodata        0x038257a4       0x94 liblua.a(llex.o)
+ .rodata        0x03825838      0x124 liblua.a(lbaselib.o)
+ .rodata        0x0382595c       0xa0 liblua.a(ldblib.o)
+ .rodata        0x038259fc       0xf0 liblua.a(liolib.o)
+ .rodata        0x03825aec       0xf8 liblua.a(lmathlib.o)
+ .rodata        0x03825be4       0x94 liblua.a(loslib.o)
+ .rodata        0x03825c78       0x40 liblua.a(ltablib.o)
+ .rodata        0x03825cb8       0xe0 liblua.a(lstrlib.o)
+ .rodata        0x03825d98       0x5f liblua.a(lutf8lib.o)
+ *fill*         0x03825df7        0x1 
+ .rodata        0x03825df8       0x68 liblua.a(loadlib.o)
+ .rodata        0x03825e60       0x58 liblua.a(lcorolib.o)
+ *(.rodata.*)
+ .rodata.str1.4
+                0x03825eb8      0x34c lua.o
+                                0x358 (size before relaxing)
+ .rodata.str1.4
+                0x03826204        0xe liblua.a(lapi.o)
+                                 0x12 (size before relaxing)
+ *fill*         0x03826212        0x2 
+ .rodata.str1.4
+                0x03826214      0x196 liblua.a(ldebug.o)
+                                0x1a6 (size before relaxing)
+ *fill*         0x038263aa        0x2 
+ .rodata.str1.4
+                0x038263ac      0x11e liblua.a(ldo.o)
+ *fill*         0x038264ca        0x2 
+ .rodata.str1.4
+                0x038264cc        0xf liblua.a(ldump.o)
+ *fill*         0x038264db        0x1 
+ .rodata.str1.4
+                0x038264dc       0x2c liblua.a(lfunc.o)
+                                 0x30 (size before relaxing)
+ .rodata.str1.4
+                0x03826508       0x3b liblua.a(lgc.o)
+                                 0x3e (size before relaxing)
+ *fill*         0x03826543        0x1 
+ .rodata.str1.4
+                0x03826544       0x42 liblua.a(lmem.o)
+ *fill*         0x03826586        0x2 
+ .rodata.str1.4
+                0x03826588       0x6f liblua.a(lobject.o)
+                                 0x77 (size before relaxing)
+ *fill*         0x038265f7        0x1 
+ .rodata.str1.4
+                0x038265f8      0x29a liblua.a(lparser.o)
+                                0x2a6 (size before relaxing)
+ .rodata.str1.4
+                0x03826892       0x11 liblua.a(lstate.o)
+ *fill*         0x03826892        0x2 
+ .rodata.str1.4
+                0x03826894       0x12 liblua.a(lstring.o)
+ *fill*         0x038268a6        0x2 
+ .rodata.str1.4
+                0x038268a8       0x4f liblua.a(ltable.o)
+ *fill*         0x038268f7        0x1 
+ .rodata.str1.4
+                0x038268f8      0x142 liblua.a(ltm.o)
+                                0x162 (size before relaxing)
+ *fill*         0x03826a3a        0x2 
+ .rodata.str1.4
+                0x03826a3c      0x10e liblua.a(lundump.o)
+                                0x12e (size before relaxing)
+ *fill*         0x03826b4a        0x2 
+ .rodata.str1.4
+                0x03826b4c       0xe6 liblua.a(lvm.o)
+                                 0xee (size before relaxing)
+ *fill*         0x03826c32        0x2 
+ .rodata.str1.4
+                0x03826c34      0x32e liblua.a(lauxlib.o)
+                                0x394 (size before relaxing)
+ *fill*         0x03826f62        0x2 
+ .rodata.str1.4
+                0x03826f64       0x2a liblua.a(linit.o)
+                                 0x46 (size before relaxing)
+ *fill*         0x03826f8e        0x2 
+ .rodata.str1.4
+                0x03826f90       0x61 liblua.a(lcode.o)
+                                 0x7d (size before relaxing)
+ *fill*         0x03826ff1        0x3 
+ .rodata.str1.4
+                0x03826ff4      0x1f9 liblua.a(llex.o)
+                                0x259 (size before relaxing)
+ *fill*         0x038271ed        0x3 
+ .rodata.str1.4
+                0x038271f0      0x267 liblua.a(lbaselib.o)
+                                0x28f (size before relaxing)
+ *fill*         0x03827457        0x1 
+ .rodata.str1.4
+                0x03827458      0x1d2 liblua.a(ldblib.o)
+                                0x25e (size before relaxing)
+ *fill*         0x0382762a        0x2 
+ .rodata.str1.4
+                0x0382762c      0x194 liblua.a(liolib.o)
+                                0x221 (size before relaxing)
+ .rodata.str1.4
+                0x038277c0       0xef liblua.a(lmathlib.o)
+                                0x10f (size before relaxing)
+ *fill*         0x038278af        0x1 
+ .rodata.str1.4
+                0x038278b0      0x1b4 liblua.a(loslib.o)
+                                0x1c8 (size before relaxing)
+ .rodata.str1.4
+                0x03827a64      0x121 liblua.a(ltablib.o)
+                                0x155 (size before relaxing)
+ *fill*         0x03827b85        0x3 
+ .rodata.str1.4
+                0x03827b88      0x59d liblua.a(lstrlib.o)
+                                0x63b (size before relaxing)
+ *fill*         0x03828125        0x3 
+ .rodata.str1.4
+                0x03828128       0xae liblua.a(lutf8lib.o)
+                                0x106 (size before relaxing)
+ *fill*         0x038281d6        0x2 
+ .rodata.str1.4
+                0x038281d8      0x2c7 liblua.a(loadlib.o)
+                                0x2fb (size before relaxing)
+ *fill*         0x0382849f        0x1 
+ .rodata.str1.4
+                0x038284a0       0xb0 liblua.a(lcorolib.o)
+                                 0xdf (size before relaxing)
+ *(.gnu.linkonce.r.*)
+                0x03828550                __rodata_end = .
+
+.rel.dyn        0x03828550        0x0
+ .rel.iplt      0x03828550        0x0 lua.o
+
+.rodata1        0x03828550        0x0
+                0x03828550                __rodata1_start = .
+ *(.rodata1)
+ *(.rodata1.*)
+                0x03828550                __rodata1_end = .
+
+.sdata2         0x03828550        0x0
+                0x03828550                __sdata2_start = .
+ *(.sdata2)
+ *(.sdata2.*)
+ *(.gnu.linkonce.s2.*)
+                0x03828550                __sdata2_end = .
+
+.sbss2          0x03828550        0x0
+                0x03828550                __sbss2_start = .
+ *(.sbss2)
+ *(.sbss2.*)
+ *(.gnu.linkonce.sb2.*)
+                0x03828550                __sbss2_end = .
+
+.data           0x03828550        0x4
+                0x03828550                __data_start = .
+ *(.data)
+ .data          0x03828550        0x4 lua.o
+ .data          0x03828554        0x0 liblua.a(lapi.o)
+ .data          0x03828554        0x0 liblua.a(ldebug.o)
+ .data          0x03828554        0x0 liblua.a(ldo.o)
+ .data          0x03828554        0x0 liblua.a(ldump.o)
+ .data          0x03828554        0x0 liblua.a(lfunc.o)
+ .data          0x03828554        0x0 liblua.a(lgc.o)
+ .data          0x03828554        0x0 liblua.a(lmem.o)
+ .data          0x03828554        0x0 liblua.a(lobject.o)
+ .data          0x03828554        0x0 liblua.a(lopcodes.o)
+ .data          0x03828554        0x0 liblua.a(lparser.o)
+ .data          0x03828554        0x0 liblua.a(lstate.o)
+ .data          0x03828554        0x0 liblua.a(lstring.o)
+ .data          0x03828554        0x0 liblua.a(ltable.o)
+ .data          0x03828554        0x0 liblua.a(ltm.o)
+ .data          0x03828554        0x0 liblua.a(lundump.o)
+ .data          0x03828554        0x0 liblua.a(lvm.o)
+ .data          0x03828554        0x0 liblua.a(lzio.o)
+ .data          0x03828554        0x0 liblua.a(lauxlib.o)
+ .data          0x03828554        0x0 liblua.a(linit.o)
+ .data          0x03828554        0x0 liblua.a(lcode.o)
+ .data          0x03828554        0x0 liblua.a(lctype.o)
+ .data          0x03828554        0x0 liblua.a(llex.o)
+ .data          0x03828554        0x0 liblua.a(lbaselib.o)
+ .data          0x03828554        0x0 liblua.a(ldblib.o)
+ .data          0x03828554        0x0 liblua.a(liolib.o)
+ .data          0x03828554        0x0 liblua.a(lmathlib.o)
+ .data          0x03828554        0x0 liblua.a(loslib.o)
+ .data          0x03828554        0x0 liblua.a(ltablib.o)
+ .data          0x03828554        0x0 liblua.a(lstrlib.o)
+ .data          0x03828554        0x0 liblua.a(lutf8lib.o)
+ .data          0x03828554        0x0 liblua.a(loadlib.o)
+ .data          0x03828554        0x0 liblua.a(lcorolib.o)
+ *(.data.*)
+ *(.gnu.linkonce.d.*)
+ *(.jcr)
+ *(.got)
+ *(.got.plt)
+                0x03828554                __data_end = .
+
+.igot.plt       0x03828554        0x0
+ .igot.plt      0x03828554        0x0 lua.o
+
+.data1          0x03828554        0x0
+                0x03828554                __data1_start = .
+ *(.data1)
+ *(.data1.*)
+                0x03828554                __data1_end = .
+
+.got
+ *(.got)
+
+.ctors          0x03828554        0x0
+                0x03828554                __CTOR_LIST__ = .
+                0x03828554                ___CTORS_LIST___ = .
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+                0x03828554                __CTOR_END__ = .
+                0x03828554                ___CTORS_END___ = .
+
+.dtors          0x03828554        0x0
+                0x03828554                __DTOR_LIST__ = .
+                0x03828554                ___DTORS_LIST___ = .
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+                0x03828554                __DTOR_END__ = .
+                0x03828554                ___DTORS_END___ = .
+
+.fixup          0x03828554        0x0
+                0x03828554                __fixup_start = .
+ *(.fixup)
+                0x03828554                __fixup_end = .
+
+.eh_frame
+ *(.eh_frame)
+
+.eh_framehdr    0x03828554        0x0
+                0x03828554                __eh_framehdr_start = .
+ *(.eh_framehdr)
+                0x03828554                __eh_framehdr_end = .
+
+.gcc_except_table
+ *(.gcc_except_table)
+
+.mmu_tbl        0x0382c000        0x0
+                0x0382c000                __mmu_tbl_start = .
+ *(.mmu_tbl)
+                0x0382c000                __mmu_tbl_end = .
+
+.ARM.exidx      0x03828554        0x0
+                0x03828554                __exidx_start = .
+ *(.ARM.exidx*)
+ *(.gnu.linkonce.armexidix.*.*)
+                0x03828554                __exidx_end = .
+
+.preinit_array  0x03828554        0x0
+                0x03828554                __preinit_array_start = .
+ *(SORT_BY_NAME(.preinit_array.*))
+ *(.preinit_array)
+                0x03828554                __preinit_array_end = .
+
+.init_array     0x03828554        0x0
+                0x03828554                __init_array_start = .
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array)
+                0x03828554                __init_array_end = .
+
+.fini_array     0x03828554        0x0
+                0x03828554                __fini_array_start = .
+ *(SORT_BY_NAME(.fini_array.*))
+ *(.fini_array)
+                0x03828554                __fini_array_end = .
+
+.ARM.attributes
+                0x03828554       0x3f
+                0x03828554                __ARM.attributes_start = .
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x03828554       0x3f lua.o
+ .ARM.attributes
+                0x03828593       0x3f liblua.a(lapi.o)
+ .ARM.attributes
+                0x038285d2       0x3f liblua.a(ldebug.o)
+ .ARM.attributes
+                0x03828611       0x3f liblua.a(ldo.o)
+ .ARM.attributes
+                0x03828650       0x3f liblua.a(ldump.o)
+ .ARM.attributes
+                0x0382868f       0x3f liblua.a(lfunc.o)
+ .ARM.attributes
+                0x038286ce       0x3f liblua.a(lgc.o)
+ .ARM.attributes
+                0x0382870d       0x3f liblua.a(lmem.o)
+ .ARM.attributes
+                0x0382874c       0x3f liblua.a(lobject.o)
+ .ARM.attributes
+                0x0382878b       0x3f liblua.a(lopcodes.o)
+ .ARM.attributes
+                0x038287ca       0x3f liblua.a(lparser.o)
+ .ARM.attributes
+                0x03828809       0x3f liblua.a(lstate.o)
+ .ARM.attributes
+                0x03828848       0x3f liblua.a(lstring.o)
+ .ARM.attributes
+                0x03828887       0x3f liblua.a(ltable.o)
+ .ARM.attributes
+                0x038288c6       0x3f liblua.a(ltm.o)
+ .ARM.attributes
+                0x03828905       0x3f liblua.a(lundump.o)
+ .ARM.attributes
+                0x03828944       0x3f liblua.a(lvm.o)
+ .ARM.attributes
+                0x03828983       0x3f liblua.a(lzio.o)
+ .ARM.attributes
+                0x038289c2       0x3f liblua.a(lauxlib.o)
+ .ARM.attributes
+                0x03828a01       0x3f liblua.a(linit.o)
+ .ARM.attributes
+                0x03828a40       0x3f liblua.a(lcode.o)
+ .ARM.attributes
+                0x03828a7f       0x3f liblua.a(lctype.o)
+ .ARM.attributes
+                0x03828abe       0x3f liblua.a(llex.o)
+ .ARM.attributes
+                0x03828afd       0x3f liblua.a(lbaselib.o)
+ .ARM.attributes
+                0x03828b3c       0x3f liblua.a(ldblib.o)
+ .ARM.attributes
+                0x03828b7b       0x3f liblua.a(liolib.o)
+ .ARM.attributes
+                0x03828bba       0x3f liblua.a(lmathlib.o)
+ .ARM.attributes
+                0x03828bf9       0x3f liblua.a(loslib.o)
+ .ARM.attributes
+                0x03828c38       0x3f liblua.a(ltablib.o)
+ .ARM.attributes
+                0x03828c77       0x3f liblua.a(lstrlib.o)
+ .ARM.attributes
+                0x03828cb6       0x3f liblua.a(lutf8lib.o)
+ .ARM.attributes
+                0x03828cf5       0x3f liblua.a(loadlib.o)
+ .ARM.attributes
+                0x03828d34       0x3f liblua.a(lcorolib.o)
+                0x03828d73                __ARM.attributes_end = .
+
+.sdata          0x03828554        0x0
+                0x03828554                __sdata_start = .
+ *(.sdata)
+ *(.sdata.*)
+ *(.gnu.linkonce.s.*)
+                0x03828554                __sdata_end = .
+
+.sbss           0x03828554        0x0
+                0x03828554                __sbss_start = .
+ *(.sbss)
+ *(.sbss.*)
+ *(.gnu.linkonce.sb.*)
+                0x03828554                __sbss_end = .
+
+.tdata          0x03828554        0x0
+                0x03828554                __tdata_start = .
+ *(.tdata)
+ *(.tdata.*)
+ *(.gnu.linkonce.td.*)
+                0x03828554                __tdata_end = .
+
+.tbss           0x03828554        0x0
+                0x03828554                __tbss_start = .
+ *(.tbss)
+ *(.tbss.*)
+ *(.gnu.linkonce.tb.*)
+                0x03828554                __tbss_end = .
+
+.bss            0x03828554        0x4
+                0x03828554                __bss_start = .
+ *(.bss)
+ .bss           0x03828554        0x4 lua.o
+ .bss           0x03828558        0x0 liblua.a(lapi.o)
+ .bss           0x03828558        0x0 liblua.a(ldebug.o)
+ .bss           0x03828558        0x0 liblua.a(ldo.o)
+ .bss           0x03828558        0x0 liblua.a(ldump.o)
+ .bss           0x03828558        0x0 liblua.a(lfunc.o)
+ .bss           0x03828558        0x0 liblua.a(lgc.o)
+ .bss           0x03828558        0x0 liblua.a(lmem.o)
+ .bss           0x03828558        0x0 liblua.a(lobject.o)
+ .bss           0x03828558        0x0 liblua.a(lopcodes.o)
+ .bss           0x03828558        0x0 liblua.a(lparser.o)
+ .bss           0x03828558        0x0 liblua.a(lstate.o)
+ .bss           0x03828558        0x0 liblua.a(lstring.o)
+ .bss           0x03828558        0x0 liblua.a(ltable.o)
+ .bss           0x03828558        0x0 liblua.a(ltm.o)
+ .bss           0x03828558        0x0 liblua.a(lundump.o)
+ .bss           0x03828558        0x0 liblua.a(lvm.o)
+ .bss           0x03828558        0x0 liblua.a(lzio.o)
+ .bss           0x03828558        0x0 liblua.a(lauxlib.o)
+ .bss           0x03828558        0x0 liblua.a(linit.o)
+ .bss           0x03828558        0x0 liblua.a(lcode.o)
+ .bss           0x03828558        0x0 liblua.a(lctype.o)
+ .bss           0x03828558        0x0 liblua.a(llex.o)
+ .bss           0x03828558        0x0 liblua.a(lbaselib.o)
+ .bss           0x03828558        0x0 liblua.a(ldblib.o)
+ .bss           0x03828558        0x0 liblua.a(liolib.o)
+ .bss           0x03828558        0x0 liblua.a(lmathlib.o)
+ .bss           0x03828558        0x0 liblua.a(loslib.o)
+ .bss           0x03828558        0x0 liblua.a(ltablib.o)
+ .bss           0x03828558        0x0 liblua.a(lstrlib.o)
+ .bss           0x03828558        0x0 liblua.a(lutf8lib.o)
+ .bss           0x03828558        0x0 liblua.a(loadlib.o)
+ .bss           0x03828558        0x0 liblua.a(lcorolib.o)
+ *(.bss.*)
+ *(.gnu.linkonce.b.*)
+ *(COMMON)
+                0x03828558                __bss_end = .
+                0x03828554                _SDA_BASE_ = (__sdata_start + ((__sbss_end - __sdata_start) / 0x2))
+                0x03828550                _SDA2_BASE_ = (__sdata2_start + ((__sbss2_end - __sdata2_start) / 0x2))
+
+.heap           0x04a00000  0x2e00000
+                0x04a00000                . = ALIGN (0x10)
+                0x04a00000                _heap = .
+                0x04a00000                HeapBase = .
+                0x04a00000                _heap_start = .
+                0x07800000                . = (. + _HEAP_SIZE)
+ *fill*         0x04a00000  0x2e00000 
+                0x07800000                _heap_end = .
+                0x07800000                HeapLimit = .
+
+.stack          0x03828558     0x3808
+                0x03828560                . = ALIGN (0x10)
+ *fill*         0x03828558        0x8 
+                0x03828560                _stack_end = .
+                0x0382a560                . = (. + _STACK_SIZE)
+ *fill*         0x03828560     0x2000 
+                0x0382a560                . = ALIGN (0x10)
+                0x0382a560                _stack = .
+                0x0382a560                __stack = _stack
+                0x0382a560                . = ALIGN (0x10)
+                0x0382a560                _irq_stack_end = .
+                0x0382a960                . = (. + _IRQ_STACK_SIZE)
+ *fill*         0x0382a560      0x400 
+                0x0382a960                . = ALIGN (0x10)
+                0x0382a960                __irq_stack = .
+                0x0382a960                _supervisor_stack_end = .
+                0x0382b160                . = (. + _SUPERVISOR_STACK_SIZE)
+ *fill*         0x0382a960      0x800 
+                0x0382b160                . = ALIGN (0x10)
+                0x0382b160                __supervisor_stack = .
+                0x0382b160                _abort_stack_end = .
+                0x0382b560                . = (. + _ABORT_STACK_SIZE)
+ *fill*         0x0382b160      0x400 
+                0x0382b560                . = ALIGN (0x10)
+                0x0382b560                __abort_stack = .
+                0x0382b560                _fiq_stack_end = .
+                0x0382b960                . = (. + _FIQ_STACK_SIZE)
+ *fill*         0x0382b560      0x400 
+                0x0382b960                . = ALIGN (0x10)
+                0x0382b960                __fiq_stack = .
+                0x0382b960                _undef_stack_end = .
+                0x0382bd60                . = (. + _UNDEF_STACK_SIZE)
+ *fill*         0x0382b960      0x400 
+                0x0382bd60                . = ALIGN (0x10)
+                0x0382bd60                __undef_stack = .
+                0x0382bd60                _end = .
+LOAD lua.o
+LOAD liblua.a
+OUTPUT(lua elf32-littlearm)
+
+.comment        0x00000000       0x7e
+ .comment       0x00000000       0x7e lua.o
+                                 0x7f (size before relaxing)
+ .comment       0x0000007e       0x7f liblua.a(lapi.o)
+ .comment       0x0000007e       0x7f liblua.a(ldebug.o)
+ .comment       0x0000007e       0x7f liblua.a(ldo.o)
+ .comment       0x0000007e       0x7f liblua.a(ldump.o)
+ .comment       0x0000007e       0x7f liblua.a(lfunc.o)
+ .comment       0x0000007e       0x7f liblua.a(lgc.o)
+ .comment       0x0000007e       0x7f liblua.a(lmem.o)
+ .comment       0x0000007e       0x7f liblua.a(lobject.o)
+ .comment       0x0000007e       0x7f liblua.a(lopcodes.o)
+ .comment       0x0000007e       0x7f liblua.a(lparser.o)
+ .comment       0x0000007e       0x7f liblua.a(lstate.o)
+ .comment       0x0000007e       0x7f liblua.a(lstring.o)
+ .comment       0x0000007e       0x7f liblua.a(ltable.o)
+ .comment       0x0000007e       0x7f liblua.a(ltm.o)
+ .comment       0x0000007e       0x7f liblua.a(lundump.o)
+ .comment       0x0000007e       0x7f liblua.a(lvm.o)
+ .comment       0x0000007e       0x7f liblua.a(lzio.o)
+ .comment       0x0000007e       0x7f liblua.a(lauxlib.o)
+ .comment       0x0000007e       0x7f liblua.a(linit.o)
+ .comment       0x0000007e       0x7f liblua.a(lcode.o)
+ .comment       0x0000007e       0x7f liblua.a(lctype.o)
+ .comment       0x0000007e       0x7f liblua.a(llex.o)
+ .comment       0x0000007e       0x7f liblua.a(lbaselib.o)
+ .comment       0x0000007e       0x7f liblua.a(ldblib.o)
+ .comment       0x0000007e       0x7f liblua.a(liolib.o)
+ .comment       0x0000007e       0x7f liblua.a(lmathlib.o)
+ .comment       0x0000007e       0x7f liblua.a(loslib.o)
+ .comment       0x0000007e       0x7f liblua.a(ltablib.o)
+ .comment       0x0000007e       0x7f liblua.a(lstrlib.o)
+ .comment       0x0000007e       0x7f liblua.a(lutf8lib.o)
+ .comment       0x0000007e       0x7f liblua.a(loadlib.o)
+ .comment       0x0000007e       0x7f liblua.a(lcorolib.o)
+
+Cross Reference Table
+
+Symbol                                            File
+__aeabi_idiv                                      liblua.a(lstrlib.o)
+                                                  liblua.a(lgc.o)
+__aeabi_idivmod                                   liblua.a(lmathlib.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(ltable.o)
+__aeabi_uidiv                                     liblua.a(lstrlib.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lgc.o)
+__aeabi_uidivmod                                  liblua.a(ltablib.o)
+                                                  liblua.a(ltable.o)
+__errno                                           liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+__locale_ctype_ptr                                liblua.a(lstrlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lbaselib.o)
+_impure_ptr                                       liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+abort                                             liblua.a(ldo.o)
+acos                                              liblua.a(lmathlib.o)
+asin                                              liblua.a(lmathlib.o)
+atan2                                             liblua.a(lmathlib.o)
+ceil                                              liblua.a(lmathlib.o)
+clock                                             liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+cos                                               liblua.a(lmathlib.o)
+difftime                                          liblua.a(loslib.o)
+exit                                              liblua.a(loslib.o)
+exp                                               liblua.a(lmathlib.o)
+fclose                                            liblua.a(loadlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+fflush                                            liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+fgets                                             liblua.a(ldblib.o)
+                                                  lua.o
+floor                                             liblua.a(lstrlib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lobject.o)
+fmod                                              liblua.a(lmathlib.o)
+                                                  liblua.a(lvm.o)
+fopen                                             liblua.a(loadlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+fprintf                                           liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+fputc                                             liblua.a(lauxlib.o)
+fputs                                             liblua.a(lauxlib.o)
+                                                  lua.o
+fread                                             liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+free                                              liblua.a(lauxlib.o)
+freopen                                           liblua.a(lauxlib.o)
+frexp                                             liblua.a(lstrlib.o)
+                                                  liblua.a(ltable.o)
+fseek                                             liblua.a(liolib.o)
+ftell                                             liblua.a(liolib.o)
+fwrite                                            liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+getc                                              liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+getenv                                            liblua.a(loadlib.o)
+                                                  liblua.a(loslib.o)
+                                                  lua.o
+gmtime                                            liblua.a(loslib.o)
+ldexp                                             liblua.a(lobject.o)
+localeconv                                        liblua.a(lstrlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lobject.o)
+localtime                                         liblua.a(loslib.o)
+log                                               liblua.a(lmathlib.o)
+log10                                             liblua.a(lmathlib.o)
+longjmp                                           liblua.a(ldo.o)
+luaC_barrier_                                     liblua.a(lgc.o)
+                                                  liblua.a(lcode.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lparser.o)
+                                                  liblua.a(lfunc.o)
+                                                  liblua.a(lapi.o)
+luaC_barrierback_                                 liblua.a(lgc.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(ltable.o)
+                                                  liblua.a(lapi.o)
+luaC_changemode                                   liblua.a(lgc.o)
+                                                  liblua.a(lapi.o)
+luaC_checkfinalizer                               liblua.a(lgc.o)
+                                                  liblua.a(lapi.o)
+luaC_fix                                          liblua.a(lgc.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(ltm.o)
+                                                  liblua.a(lstring.o)
+luaC_freeallobjects                               liblua.a(lgc.o)
+                                                  liblua.a(lstate.o)
+luaC_fullgc                                       liblua.a(lgc.o)
+                                                  liblua.a(lstring.o)
+                                                  liblua.a(lmem.o)
+                                                  liblua.a(lapi.o)
+luaC_newobj                                       liblua.a(lgc.o)
+                                                  liblua.a(ltable.o)
+                                                  liblua.a(lstring.o)
+                                                  liblua.a(lfunc.o)
+luaC_runtilstate                                  liblua.a(lgc.o)
+luaC_step                                         liblua.a(lgc.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(ltm.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(lparser.o)
+                                                  liblua.a(ldo.o)
+                                                  liblua.a(ldebug.o)
+                                                  liblua.a(lapi.o)
+luaD_call                                         liblua.a(ldo.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(ltm.o)
+                                                  liblua.a(lapi.o)
+luaD_callnoyield                                  liblua.a(ldo.o)
+                                                  liblua.a(ltm.o)
+                                                  liblua.a(lgc.o)
+                                                  liblua.a(lfunc.o)
+                                                  liblua.a(ldebug.o)
+                                                  liblua.a(lapi.o)
+luaD_growstack                                    liblua.a(ldo.o)
+                                                  liblua.a(ltm.o)
+                                                  liblua.a(lapi.o)
+luaD_hook                                         liblua.a(ldo.o)
+                                                  liblua.a(ldebug.o)
+luaD_hookcall                                     liblua.a(ldo.o)
+                                                  liblua.a(lvm.o)
+luaD_inctop                                       liblua.a(ldo.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(lparser.o)
+luaD_pcall                                        liblua.a(ldo.o)
+                                                  liblua.a(lgc.o)
+                                                  liblua.a(lfunc.o)
+                                                  liblua.a(lapi.o)
+luaD_poscall                                      liblua.a(ldo.o)
+                                                  liblua.a(lvm.o)
+luaD_pretailcall                                  liblua.a(ldo.o)
+                                                  liblua.a(lvm.o)
+luaD_protectedparser                              liblua.a(ldo.o)
+                                                  liblua.a(lapi.o)
+luaD_rawrunprotected                              liblua.a(ldo.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(lfunc.o)
+luaD_reallocstack                                 liblua.a(ldo.o)
+luaD_seterrorobj                                  liblua.a(ldo.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(lfunc.o)
+luaD_shrinkstack                                  liblua.a(ldo.o)
+                                                  liblua.a(lgc.o)
+luaD_throw                                        liblua.a(ldo.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(ltable.o)
+                                                  liblua.a(lstring.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(lmem.o)
+                                                  liblua.a(lfunc.o)
+                                                  liblua.a(ldebug.o)
+luaD_tryfuncTM                                    liblua.a(ldo.o)
+                                                  liblua.a(lvm.o)
+luaE_enterCcall                                   liblua.a(lstate.o)
+                                                  liblua.a(lparser.o)
+luaE_extendCI                                     liblua.a(lstate.o)
+                                                  liblua.a(ldo.o)
+luaE_freeCI                                       liblua.a(lstate.o)
+                                                  liblua.a(ldo.o)
+luaE_freethread                                   liblua.a(lstate.o)
+                                                  liblua.a(lgc.o)
+luaE_setdebt                                      liblua.a(lstate.o)
+                                                  liblua.a(lgc.o)
+                                                  liblua.a(lapi.o)
+luaE_shrinkCI                                     liblua.a(lstate.o)
+                                                  liblua.a(ldo.o)
+luaE_warning                                      liblua.a(lstate.o)
+                                                  liblua.a(lgc.o)
+                                                  liblua.a(lapi.o)
+luaF_close                                        liblua.a(lfunc.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(ldo.o)
+                                                  liblua.a(lapi.o)
+luaF_findupval                                    liblua.a(lfunc.o)
+                                                  liblua.a(lvm.o)
+luaF_freeproto                                    liblua.a(lfunc.o)
+                                                  liblua.a(lgc.o)
+luaF_getlocalname                                 liblua.a(lfunc.o)
+                                                  liblua.a(ldebug.o)
+luaF_initupvals                                   liblua.a(lfunc.o)
+                                                  liblua.a(ldo.o)
+luaF_newCclosure                                  liblua.a(lfunc.o)
+                                                  liblua.a(lapi.o)
+luaF_newLclosure                                  liblua.a(lfunc.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(lparser.o)
+luaF_newproto                                     liblua.a(lfunc.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(lparser.o)
+luaF_newtbcupval                                  liblua.a(lfunc.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaF_unlinkupval                                  liblua.a(lfunc.o)
+                                                  liblua.a(lgc.o)
+luaG_addinfo                                      liblua.a(ldebug.o)
+                                                  liblua.a(llex.o)
+luaG_concaterror                                  liblua.a(ldebug.o)
+                                                  liblua.a(ltm.o)
+luaG_errormsg                                     liblua.a(ldebug.o)
+                                                  liblua.a(lapi.o)
+luaG_findlocal                                    liblua.a(ldebug.o)
+                                                  liblua.a(lfunc.o)
+luaG_forerror                                     liblua.a(ldebug.o)
+                                                  liblua.a(lvm.o)
+luaG_getfuncline                                  liblua.a(ldebug.o)
+luaG_opinterror                                   liblua.a(ldebug.o)
+                                                  liblua.a(ltm.o)
+luaG_ordererror                                   liblua.a(ldebug.o)
+                                                  liblua.a(ltm.o)
+luaG_runerror                                     liblua.a(ldebug.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(ltable.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(lobject.o)
+                                                  liblua.a(lmem.o)
+                                                  liblua.a(lfunc.o)
+                                                  liblua.a(ldo.o)
+luaG_tointerror                                   liblua.a(ldebug.o)
+                                                  liblua.a(ltm.o)
+luaG_traceexec                                    liblua.a(ldebug.o)
+                                                  liblua.a(lvm.o)
+luaG_typeerror                                    liblua.a(ldebug.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(ldo.o)
+luaH_free                                         liblua.a(ltable.o)
+                                                  liblua.a(lgc.o)
+luaH_get                                          liblua.a(ltable.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaH_getint                                       liblua.a(ltable.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaH_getn                                         liblua.a(ltable.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaH_getshortstr                                  liblua.a(ltable.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(ltm.o)
+luaH_getstr                                       liblua.a(ltable.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaH_new                                          liblua.a(ltable.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(lparser.o)
+                                                  liblua.a(ldebug.o)
+                                                  liblua.a(lapi.o)
+luaH_newkey                                       liblua.a(ltable.o)
+                                                  liblua.a(lvm.o)
+luaH_next                                         liblua.a(ltable.o)
+                                                  liblua.a(lapi.o)
+luaH_realasize                                    liblua.a(ltable.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lgc.o)
+luaH_resize                                       liblua.a(ltable.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(lapi.o)
+luaH_resizearray                                  liblua.a(ltable.o)
+                                                  liblua.a(lvm.o)
+luaH_set                                          liblua.a(ltable.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(lcode.o)
+                                                  liblua.a(lapi.o)
+luaH_setint                                       liblua.a(ltable.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(ldebug.o)
+                                                  liblua.a(lapi.o)
+luaK_checkstack                                   liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_codeABCk                                     liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_codeABx                                      liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_codeAsBx                                     liblua.a(lcode.o)
+luaK_concat                                       liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_dischargevars                                liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_exp2RK                                       liblua.a(lcode.o)
+luaK_exp2anyreg                                   liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_exp2anyregup                                 liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_exp2nextreg                                  liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_exp2val                                      liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_finish                                       liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_fixline                                      liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_getlabel                                     liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_goiffalse                                    liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_goiftrue                                     liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_indexed                                      liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_infix                                        liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_int                                          liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_isKint                                       liblua.a(lcode.o)
+luaK_jump                                         liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_nil                                          liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_patchlist                                    liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_patchtohere                                  liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_posfix                                       liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_prefix                                       liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_reserveregs                                  liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_ret                                          liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_self                                         liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_semerror                                     liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_setlist                                      liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_setoneret                                    liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_setreturns                                   liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_storevar                                     liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaK_stringK                                      liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaL_addlstring                                   liblua.a(lauxlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+luaL_addstring                                    liblua.a(lauxlib.o)
+                                                  liblua.a(lstrlib.o)
+luaL_addvalue                                     liblua.a(lauxlib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+luaL_argerror                                     liblua.a(lauxlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_buffinit                                     liblua.a(lauxlib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+luaL_buffinitsize                                 liblua.a(lauxlib.o)
+                                                  liblua.a(lstrlib.o)
+luaL_callmeta                                     liblua.a(lauxlib.o)
+                                                  lua.o
+luaL_checkany                                     liblua.a(lauxlib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_checkinteger                                 liblua.a(lauxlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_checklstring                                 liblua.a(lauxlib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_checknumber                                  liblua.a(lauxlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(lmathlib.o)
+luaL_checkoption                                  liblua.a(lauxlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_checkstack                                   liblua.a(lauxlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  lua.o
+luaL_checktype                                    liblua.a(lauxlib.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_checkudata                                   liblua.a(lauxlib.o)
+                                                  liblua.a(liolib.o)
+luaL_checkversion_                                liblua.a(lauxlib.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  lua.o
+luaL_error                                        liblua.a(lauxlib.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  lua.o
+luaL_execresult                                   liblua.a(lauxlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+luaL_fileresult                                   liblua.a(lauxlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+luaL_getmetafield                                 liblua.a(lauxlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_getsubtable                                  liblua.a(lauxlib.o)
+                                                  liblua.a(loadlib.o)
+luaL_gsub                                         liblua.a(lauxlib.o)
+                                                  liblua.a(loadlib.o)
+luaL_len                                          liblua.a(lauxlib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  lua.o
+luaL_loadbufferx                                  liblua.a(lauxlib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  lua.o
+luaL_loadfilex                                    liblua.a(lauxlib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  lua.o
+luaL_loadstring                                   liblua.a(lauxlib.o)
+luaL_newmetatable                                 liblua.a(lauxlib.o)
+                                                  liblua.a(liolib.o)
+luaL_newstate                                     liblua.a(lauxlib.o)
+                                                  lua.o
+luaL_openlibs                                     liblua.a(linit.o)
+                                                  lua.o
+luaL_optinteger                                   liblua.a(lauxlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_optlstring                                   liblua.a(lauxlib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_optnumber                                    liblua.a(lauxlib.o)
+                                                  liblua.a(lmathlib.o)
+luaL_prepbuffsize                                 liblua.a(lauxlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+luaL_pushresult                                   liblua.a(lauxlib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+luaL_pushresultsize                               liblua.a(lauxlib.o)
+                                                  liblua.a(lstrlib.o)
+luaL_ref                                          liblua.a(lauxlib.o)
+luaL_requiref                                     liblua.a(lauxlib.o)
+                                                  liblua.a(linit.o)
+luaL_setfuncs                                     liblua.a(lauxlib.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_setmetatable                                 liblua.a(lauxlib.o)
+                                                  liblua.a(liolib.o)
+luaL_testudata                                    liblua.a(lauxlib.o)
+                                                  liblua.a(liolib.o)
+luaL_tolstring                                    liblua.a(lauxlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_traceback                                    liblua.a(lauxlib.o)
+                                                  liblua.a(ldblib.o)
+                                                  lua.o
+luaL_typeerror                                    liblua.a(lauxlib.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+luaL_unref                                        liblua.a(lauxlib.o)
+luaL_where                                        liblua.a(lauxlib.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(lbaselib.o)
+luaM_free_                                        liblua.a(lmem.o)
+                                                  liblua.a(ltable.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(lgc.o)
+                                                  liblua.a(lfunc.o)
+                                                  liblua.a(ldo.o)
+luaM_growaux_                                     liblua.a(lmem.o)
+                                                  liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaM_malloc_                                      liblua.a(lmem.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(ltable.o)
+                                                  liblua.a(lstring.o)
+                                                  liblua.a(lstate.o)
+                                                  liblua.a(lgc.o)
+luaM_realloc_                                     liblua.a(lmem.o)
+                                                  liblua.a(ltable.o)
+                                                  liblua.a(lstring.o)
+                                                  liblua.a(ldo.o)
+luaM_saferealloc_                                 liblua.a(lmem.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(ldo.o)
+luaM_shrinkvector_                                liblua.a(lmem.o)
+                                                  liblua.a(lparser.o)
+luaM_toobig                                       liblua.a(lmem.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(lstring.o)
+luaO_arith                                        liblua.a(lobject.o)
+                                                  liblua.a(lapi.o)
+luaO_ceillog2                                     liblua.a(lobject.o)
+                                                  liblua.a(ltable.o)
+luaO_chunkid                                      liblua.a(lobject.o)
+                                                  liblua.a(ldebug.o)
+luaO_fb2int                                       liblua.a(lobject.o)
+                                                  liblua.a(lvm.o)
+luaO_hexavalue                                    liblua.a(lobject.o)
+                                                  liblua.a(llex.o)
+luaO_int2fb                                       liblua.a(lobject.o)
+                                                  liblua.a(lparser.o)
+luaO_pushfstring                                  liblua.a(lobject.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(lparser.o)
+                                                  liblua.a(ldo.o)
+                                                  liblua.a(ldebug.o)
+luaO_pushvfstring                                 liblua.a(lobject.o)
+                                                  liblua.a(ldebug.o)
+                                                  liblua.a(lapi.o)
+luaO_rawarith                                     liblua.a(lobject.o)
+                                                  liblua.a(lcode.o)
+luaO_str2num                                      liblua.a(lobject.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaO_tostring                                     liblua.a(lobject.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaO_utf8esc                                      liblua.a(lobject.o)
+                                                  liblua.a(llex.o)
+luaP_opmodes                                      liblua.a(lopcodes.o)
+                                                  liblua.a(lcode.o)
+                                                  liblua.a(ldebug.o)
+luaS_clearcache                                   liblua.a(lstring.o)
+                                                  liblua.a(lgc.o)
+luaS_createlngstrobj                              liblua.a(lstring.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lundump.o)
+luaS_eqlngstr                                     liblua.a(lstring.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(ltable.o)
+luaS_hash                                         liblua.a(lstring.o)
+                                                  liblua.a(lstate.o)
+luaS_hashlongstr                                  liblua.a(lstring.o)
+                                                  liblua.a(ltable.o)
+luaS_init                                         liblua.a(lstring.o)
+                                                  liblua.a(lstate.o)
+luaS_new                                          liblua.a(lstring.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(ltm.o)
+                                                  liblua.a(lparser.o)
+                                                  liblua.a(ldo.o)
+                                                  liblua.a(lapi.o)
+luaS_newlstr                                      liblua.a(lstring.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(lparser.o)
+                                                  liblua.a(lobject.o)
+                                                  liblua.a(ldo.o)
+                                                  liblua.a(lapi.o)
+luaS_newudata                                     liblua.a(lstring.o)
+                                                  liblua.a(lapi.o)
+luaS_remove                                       liblua.a(lstring.o)
+                                                  liblua.a(lgc.o)
+luaS_resize                                       liblua.a(lstring.o)
+                                                  liblua.a(lgc.o)
+luaT_adjustvarargs                                liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+luaT_callTM                                       liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+luaT_callTMres                                    liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+luaT_callorderTM                                  liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+luaT_callorderiTM                                 liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+luaT_gettm                                        liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lgc.o)
+luaT_gettmbyobj                                   liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lgc.o)
+                                                  liblua.a(lfunc.o)
+                                                  liblua.a(ldo.o)
+luaT_getvarargs                                   liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+luaT_init                                         liblua.a(ltm.o)
+                                                  liblua.a(lstate.o)
+luaT_objtypename                                  liblua.a(ltm.o)
+                                                  liblua.a(ldebug.o)
+luaT_trybinTM                                     liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lobject.o)
+luaT_trybinassocTM                                liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+luaT_trybiniTM                                    liblua.a(ltm.o)
+                                                  liblua.a(lvm.o)
+luaT_typenames_                                   liblua.a(ltm.o)
+                                                  liblua.a(lapi.o)
+luaU_dump                                         liblua.a(ldump.o)
+                                                  liblua.a(lapi.o)
+luaU_undump                                       liblua.a(lundump.o)
+                                                  liblua.a(ldo.o)
+luaV_concat                                       liblua.a(lvm.o)
+                                                  liblua.a(lobject.o)
+                                                  liblua.a(lapi.o)
+luaV_equalobj                                     liblua.a(lvm.o)
+                                                  liblua.a(lcode.o)
+                                                  liblua.a(lapi.o)
+luaV_execute                                      liblua.a(lvm.o)
+                                                  liblua.a(ldo.o)
+luaV_finishOp                                     liblua.a(lvm.o)
+                                                  liblua.a(ldo.o)
+luaV_finishget                                    liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaV_finishset                                    liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaV_flttointeger                                 liblua.a(lvm.o)
+                                                  liblua.a(lcode.o)
+                                                  liblua.a(ltable.o)
+luaV_idiv                                         liblua.a(lvm.o)
+                                                  liblua.a(lobject.o)
+luaV_lessequal                                    liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaV_lessthan                                     liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaV_mod                                          liblua.a(lvm.o)
+                                                  liblua.a(lobject.o)
+luaV_modf                                         liblua.a(lvm.o)
+                                                  liblua.a(lobject.o)
+luaV_objlen                                       liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaV_shiftl                                       liblua.a(lvm.o)
+                                                  liblua.a(lobject.o)
+luaV_tointeger                                    liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaV_tointegerns                                  liblua.a(lvm.o)
+                                                  liblua.a(lcode.o)
+                                                  liblua.a(lobject.o)
+                                                  liblua.a(ldebug.o)
+luaV_tonumber_                                    liblua.a(lvm.o)
+                                                  liblua.a(lapi.o)
+luaX_init                                         liblua.a(llex.o)
+                                                  liblua.a(lstate.o)
+luaX_lookahead                                    liblua.a(llex.o)
+                                                  liblua.a(lparser.o)
+luaX_newstring                                    liblua.a(llex.o)
+                                                  liblua.a(lparser.o)
+luaX_next                                         liblua.a(llex.o)
+                                                  liblua.a(lparser.o)
+luaX_setinput                                     liblua.a(llex.o)
+                                                  liblua.a(lparser.o)
+luaX_syntaxerror                                  liblua.a(llex.o)
+                                                  liblua.a(lcode.o)
+                                                  liblua.a(lparser.o)
+luaX_token2str                                    liblua.a(llex.o)
+                                                  liblua.a(lparser.o)
+luaY_parser                                       liblua.a(lparser.o)
+                                                  liblua.a(ldo.o)
+luaZ_fill                                         liblua.a(lzio.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(ldo.o)
+luaZ_init                                         liblua.a(lzio.o)
+                                                  liblua.a(lapi.o)
+luaZ_read                                         liblua.a(lzio.o)
+                                                  liblua.a(lundump.o)
+lua_absindex                                      liblua.a(lapi.o)
+                                                  liblua.a(lauxlib.o)
+lua_arith                                         liblua.a(lapi.o)
+                                                  liblua.a(lstrlib.o)
+lua_atpanic                                       liblua.a(lapi.o)
+                                                  liblua.a(lauxlib.o)
+lua_callk                                         liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_checkstack                                    liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lauxlib.o)
+lua_close                                         liblua.a(lstate.o)
+                                                  liblua.a(loslib.o)
+                                                  lua.o
+lua_compare                                       liblua.a(lapi.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(lmathlib.o)
+lua_concat                                        liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_copy                                          liblua.a(lapi.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_createtable                                   liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_dump                                          liblua.a(lapi.o)
+                                                  liblua.a(lstrlib.o)
+lua_error                                         liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_gc                                            liblua.a(lapi.o)
+                                                  liblua.a(lbaselib.o)
+                                                  lua.o
+lua_getallocf                                     liblua.a(lapi.o)
+                                                  liblua.a(lauxlib.o)
+lua_getfield                                      liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+lua_getglobal                                     liblua.a(lapi.o)
+                                                  liblua.a(lbaselib.o)
+                                                  lua.o
+lua_gethook                                       liblua.a(ldebug.o)
+                                                  liblua.a(ldblib.o)
+lua_gethookcount                                  liblua.a(ldebug.o)
+                                                  liblua.a(ldblib.o)
+lua_gethookmask                                   liblua.a(ldebug.o)
+                                                  liblua.a(ldblib.o)
+lua_geti                                          liblua.a(lapi.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(lbaselib.o)
+lua_getinfo                                       liblua.a(ldebug.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lauxlib.o)
+lua_getiuservalue                                 liblua.a(lapi.o)
+                                                  liblua.a(ldblib.o)
+lua_getlocal                                      liblua.a(ldebug.o)
+                                                  liblua.a(ldblib.o)
+lua_getmetatable                                  liblua.a(lapi.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_getstack                                      liblua.a(ldebug.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lauxlib.o)
+lua_gettable                                      liblua.a(lapi.o)
+                                                  liblua.a(lstrlib.o)
+lua_gettop                                        liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_getupvalue                                    liblua.a(lapi.o)
+                                                  liblua.a(ldblib.o)
+lua_ident                                         liblua.a(lapi.o)
+lua_iscfunction                                   liblua.a(lapi.o)
+                                                  liblua.a(ldblib.o)
+lua_isinteger                                     liblua.a(lapi.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+lua_isnumber                                      liblua.a(lapi.o)
+                                                  liblua.a(lauxlib.o)
+lua_isstring                                      liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_isuserdata                                    liblua.a(lapi.o)
+lua_isyieldable                                   liblua.a(ldo.o)
+                                                  liblua.a(lcorolib.o)
+lua_len                                           liblua.a(lapi.o)
+                                                  liblua.a(lauxlib.o)
+lua_load                                          liblua.a(lapi.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_newstate                                      liblua.a(lstate.o)
+                                                  liblua.a(lauxlib.o)
+lua_newthread                                     liblua.a(lstate.o)
+                                                  liblua.a(lcorolib.o)
+lua_newuserdatauv                                 liblua.a(lapi.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+lua_next                                          liblua.a(lapi.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_pcallk                                        liblua.a(lapi.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  lua.o
+lua_pushboolean                                   liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_pushcclosure                                  liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_pushfstring                                   liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_pushinteger                                   liblua.a(lapi.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_pushlightuserdata                             liblua.a(lapi.o)
+                                                  liblua.a(ldblib.o)
+                                                  lua.o
+lua_pushlstring                                   liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_pushnil                                       liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_pushnumber                                    liblua.a(lapi.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(lbaselib.o)
+lua_pushstring                                    liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_pushthread                                    liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(ldblib.o)
+lua_pushvalue                                     liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_pushvfstring                                  liblua.a(lapi.o)
+                                                  liblua.a(lauxlib.o)
+lua_rawequal                                      liblua.a(lapi.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_rawget                                        liblua.a(lapi.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_rawgeti                                       liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_rawgetp                                       liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(ldblib.o)
+lua_rawlen                                        liblua.a(lapi.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_rawset                                        liblua.a(lapi.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+lua_rawseti                                       liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_rawsetp                                       liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(ldblib.o)
+lua_resetthread                                   liblua.a(lstate.o)
+                                                  liblua.a(lcorolib.o)
+lua_resume                                        liblua.a(ldo.o)
+                                                  liblua.a(lcorolib.o)
+lua_rotate                                        liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_setallocf                                     liblua.a(lapi.o)
+lua_setfield                                      liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_setglobal                                     liblua.a(lapi.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_sethook                                       liblua.a(ldebug.o)
+                                                  liblua.a(ldblib.o)
+                                                  lua.o
+lua_seti                                          liblua.a(lapi.o)
+                                                  liblua.a(ltablib.o)
+lua_setiuservalue                                 liblua.a(lapi.o)
+                                                  liblua.a(ldblib.o)
+lua_setlocal                                      liblua.a(ldebug.o)
+                                                  liblua.a(ldblib.o)
+lua_setmetatable                                  liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+lua_settable                                      liblua.a(lapi.o)
+lua_settop                                        liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(linit.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_setupvalue                                    liblua.a(lapi.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+lua_setwarnf                                      liblua.a(lapi.o)
+                                                  liblua.a(lauxlib.o)
+lua_status                                        liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+lua_stringtonumber                                liblua.a(lapi.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lbaselib.o)
+lua_toboolean                                     liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_tocfunction                                   liblua.a(lapi.o)
+lua_toclose                                       liblua.a(lapi.o)
+                                                  liblua.a(lauxlib.o)
+lua_tointegerx                                    liblua.a(lapi.o)
+                                                  liblua.a(lutf8lib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_tolstring                                     liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_tonumberx                                     liblua.a(lapi.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+lua_topointer                                     liblua.a(lapi.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(lauxlib.o)
+lua_tothread                                      liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(ldblib.o)
+lua_touserdata                                    liblua.a(lapi.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_type                                          liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_typename                                      liblua.a(lapi.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(ltablib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  lua.o
+lua_upvalueid                                     liblua.a(lapi.o)
+                                                  liblua.a(ldblib.o)
+lua_upvaluejoin                                   liblua.a(lapi.o)
+                                                  liblua.a(ldblib.o)
+lua_version                                       liblua.a(lapi.o)
+                                                  liblua.a(lauxlib.o)
+lua_warning                                       liblua.a(lapi.o)
+                                                  liblua.a(lbaselib.o)
+lua_xmove                                         liblua.a(lapi.o)
+                                                  liblua.a(lcorolib.o)
+                                                  liblua.a(ldblib.o)
+lua_yieldk                                        liblua.a(ldo.o)
+                                                  liblua.a(lcorolib.o)
+luai_ctype_                                       liblua.a(lctype.o)
+                                                  liblua.a(llex.o)
+                                                  liblua.a(lobject.o)
+luaopen_base                                      liblua.a(lbaselib.o)
+                                                  liblua.a(linit.o)
+luaopen_coroutine                                 liblua.a(lcorolib.o)
+                                                  liblua.a(linit.o)
+luaopen_debug                                     liblua.a(ldblib.o)
+                                                  liblua.a(linit.o)
+luaopen_io                                        liblua.a(liolib.o)
+                                                  liblua.a(linit.o)
+luaopen_math                                      liblua.a(lmathlib.o)
+                                                  liblua.a(linit.o)
+luaopen_os                                        liblua.a(loslib.o)
+                                                  liblua.a(linit.o)
+luaopen_package                                   liblua.a(loadlib.o)
+                                                  liblua.a(linit.o)
+luaopen_string                                    liblua.a(lstrlib.o)
+                                                  liblua.a(linit.o)
+luaopen_table                                     liblua.a(ltablib.o)
+                                                  liblua.a(linit.o)
+luaopen_utf8                                      liblua.a(lutf8lib.o)
+                                                  liblua.a(linit.o)
+main                                              lua.o
+memchr                                            liblua.a(lstrlib.o)
+memcmp                                            liblua.a(lstrlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(lstring.o)
+memcpy                                            liblua.a(lstrlib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  liblua.a(lzio.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lstring.o)
+                                                  liblua.a(lobject.o)
+mktime                                            liblua.a(loslib.o)
+pow                                               liblua.a(lvm.o)
+                                                  liblua.a(lobject.o)
+realloc                                           liblua.a(lauxlib.o)
+remove                                            liblua.a(loslib.o)
+rename                                            liblua.a(loslib.o)
+setjmp                                            liblua.a(ldo.o)
+setlocale                                         liblua.a(loslib.o)
+setvbuf                                           liblua.a(liolib.o)
+signal                                            lua.o
+sin                                               liblua.a(lmathlib.o)
+sprintf                                           liblua.a(lstrlib.o)
+                                                  liblua.a(lobject.o)
+sqrt                                              liblua.a(lmathlib.o)
+strchr                                            liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lobject.o)
+                                                  liblua.a(lgc.o)
+                                                  liblua.a(ldo.o)
+                                                  liblua.a(ldebug.o)
+strcmp                                            liblua.a(loslib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  liblua.a(lstring.o)
+                                                  liblua.a(lparser.o)
+                                                  liblua.a(ldebug.o)
+                                                  lua.o
+strcoll                                           liblua.a(lvm.o)
+strerror                                          liblua.a(liolib.o)
+                                                  liblua.a(lauxlib.o)
+strftime                                          liblua.a(loslib.o)
+strlen                                            liblua.a(loadlib.o)
+                                                  liblua.a(lstrlib.o)
+                                                  liblua.a(liolib.o)
+                                                  liblua.a(ldblib.o)
+                                                  liblua.a(lauxlib.o)
+                                                  liblua.a(lvm.o)
+                                                  liblua.a(lundump.o)
+                                                  liblua.a(lstring.o)
+                                                  liblua.a(lobject.o)
+                                                  lua.o
+strncmp                                           liblua.a(lauxlib.o)
+strpbrk                                           liblua.a(lstrlib.o)
+                                                  liblua.a(lobject.o)
+strspn                                            liblua.a(liolib.o)
+                                                  liblua.a(lbaselib.o)
+                                                  liblua.a(lobject.o)
+strstr                                            liblua.a(lauxlib.o)
+strtod                                            liblua.a(lobject.o)
+system                                            liblua.a(loslib.o)
+tan                                               liblua.a(lmathlib.o)
+time                                              liblua.a(ltablib.o)
+                                                  liblua.a(loslib.o)
+                                                  liblua.a(lmathlib.o)
+                                                  liblua.a(lstate.o)
+tmpfile                                           liblua.a(liolib.o)
+tmpnam                                            liblua.a(loslib.o)
+ungetc                                            liblua.a(liolib.o)

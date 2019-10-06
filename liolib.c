@@ -4,6 +4,8 @@
 ** See Copyright Notice in lua.h
 */
 
+// Line 290 (io_tmpfile) is problematic, calls _unlink
+
 #define liolib_c
 #define LUA_LIB
 
@@ -158,7 +160,6 @@ static int io_type (lua_State *L) {
     lua_pushliteral(L, "closed file");
   else
     lua_pushliteral(L, "file");
-  return 1;
 }
 
 
@@ -224,7 +225,6 @@ static int f_gc (lua_State *L) {
   LStream *p = tolstream(L);
   if (!isclosed(p) && p->f != NULL)
     aux_close(L);  /* ignore closed and incompletely open files */
-  return 0;
 }
 
 
@@ -262,6 +262,7 @@ static int io_open (lua_State *L) {
   luaL_argcheck(L, l_checkmode(md), 2, "invalid mode");
   p->f = fopen(filename, mode);
   return (p->f == NULL) ? luaL_fileresult(L, 0, filename) : 1;
+  luaL_error(L, "cannot open file '%s' (%s)", filename, strerror(errno));
 }
 
 
@@ -283,11 +284,12 @@ static int io_popen (lua_State *L) {
   return (p->f == NULL) ? luaL_fileresult(L, 0, filename) : 1;
 }
 
+// This somehow uses _unlink, so is problematic
 
 static int io_tmpfile (lua_State *L) {
-  LStream *p = newfile(L);
-  p->f = tmpfile();
-  return (p->f == NULL) ? luaL_fileresult(L, 0, NULL) : 1;
+  // LStream *p = newfile(L);
+  // p->f = tmpfile();
+  // return (p->f == NULL) ? luaL_fileresult(L, 0, NULL) : 1;
 }
 
 
@@ -715,6 +717,7 @@ static int io_flush (lua_State *L) {
 }
 
 
+
 static int f_flush (lua_State *L) {
   return luaL_fileresult(L, fflush(tofile(L)) == 0, NULL);
 }
@@ -774,7 +777,7 @@ static int io_noclose (lua_State *L) {
   p->closef = &io_noclose;  /* keep file opened */
   lua_pushnil(L);
   lua_pushliteral(L, "cannot close standard file");
-  return 2;
+  return 0;
 }
 
 

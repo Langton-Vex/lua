@@ -65,9 +65,12 @@ AR= arm-none-eabi-ar rcu
 RANLIB= arm-none-eabi-ranlib
 RM= rm -f
 MKDIR= mkdir -p
+PROS= prosv5
 
 BUILD_H= lauxlib.h lua.h lua.hpp luaconf.h lualib.h
 
+LUA_VERSION = 5.4.0
+KERNEL_VERSION = 3.2.0
 
 
 # == END OF USER SETTINGS. NO NEED TO CHANGE ANYTHING BELOW THIS LINE =========
@@ -110,6 +113,7 @@ all:	$(ALL_T)
 	$(MKDIR) $(INSTALL_INCLUDE) $(INSTALL_FIRMWARE)
 	$(INSTALL_DATA) $(TO_INCLUDE) $(INSTALL_INCLUDE)
 	$(INSTALL_DATA) $(TO_FIRMWARE) $(INSTALL_FIRMWARE)
+	$(PROS) conduct create-template build liblua $(LUA_VERSION) --system "firmware/*.a" --system "include/lua/*.h**" --target v5 --kernel $(KERNEL_VERSION)
 	
 	
 
@@ -130,8 +134,7 @@ $(LUAC_T): $(LUAC_O) $(CORE_T)
 clean:
 	#rcsclean -u
 	$(RM) $(ALL_T) $(ALL_O)
-	cd $(INSTALL_INCLUDE) && $(RM) $(TO_INCLUDE)
-	cd $(INSTALL_FIRMWARE) && $(RM) $(TO_FIRMWARE)
+	$(RM) -rf $(INSTALL_TOP)
 
 depend:
 	@$(CC) $(CFLAGS) -MM *.c

@@ -56,32 +56,32 @@
 ** Define it if you want Lua to avoid the use of a few C99 features
 ** or Windows-specific features on Windows.
 */
-#define LUA_USE_C89 
+//#define LUA_USE_C89 
 
 
 /*
 ** By default, Lua on Windows use (some) specific Windows features
 */
 #if !defined(LUA_USE_C89) && defined(_WIN32) && !defined(_WIN32_WCE)
-#define LUA_USE_WINDOWS  /* enable goodies for regular Windows */
+//#define LUA_USE_WINDOWS  /* enable goodies for regular Windows */
 #endif
 
 
 #if defined(LUA_USE_WINDOWS)
-#define LUA_DL_DLL	/* enable support for DLL */
-#define LUA_USE_C89	/* broadly, Windows is C89 */
+//#define LUA_DL_DLL	/* enable support for DLL */
+//#define LUA_USE_C89	/* broadly, Windows is C89 */
 #endif
 
 
 #if defined(LUA_USE_LINUX)
-#define LUA_USE_POSIX
-#define LUA_USE_DLOPEN		/* needs an extra library: -ldl */
+//#define LUA_USE_POSIX
+//#define LUA_USE_DLOPEN		/* needs an extra library: -ldl */
 #endif
 
 
 #if defined(LUA_USE_MACOSX)
-#define LUA_USE_POSIX
-#define LUA_USE_DLOPEN		/* MacOS does not need -ldl */
+//#define LUA_USE_POSIX
+//#define LUA_USE_DLOPEN		/* MacOS does not need -ldl */
 #endif
 
 
